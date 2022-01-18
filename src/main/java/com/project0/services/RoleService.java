@@ -13,7 +13,7 @@ public class RoleService {
         return roleDAO.findAll();
     }
 
-    public Role findRole(String roleName){
+    public Role findByRole(String roleName){
         return roleDAO.findByRole(roleName);
     }
 
