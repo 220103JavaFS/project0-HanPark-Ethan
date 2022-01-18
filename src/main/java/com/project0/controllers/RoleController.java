@@ -56,6 +56,9 @@ public class RoleController implements Controller{
 
     @Override
     public void addRoutes(Javalin app) {
-
+        app.get("/role", getAllRoles);
+        app.get("/role/{role_name}", getRole);
+        app.put("/role", updateRole);
+        app.post("/role", addRole);
     }
 }
