@@ -78,7 +78,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean addUser(User user) {
         try (Connection conn = ConnectionUtil.getConnection()){
-            String sql = "UPDATE users SET first_name = ?, last_name = ?, user_email = ?, user_phone = ?, user_dob = ?, dept_names = ?, role_names = ? WHERE role_name = ?;";
+            String sql = "INSERT INTO users (first_name, last_name, user_email, user_phone, user_dob, dept_names, role_names, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?));";
             PreparedStatement statement = conn.prepareStatement(sql);
 
             int count = 0;
@@ -102,6 +102,26 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean updateUser(User user) {
+        try (Connection conn = ConnectionUtil.getConnection()){
+            String sql = "UPDATE users SET first_name = ?, last_name = ?, user_email = ?, user_phone = ?, user_dob = ?, dept_names = ?, role_names = ? WHERE role_name = ?;";
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            int count = 0;
+            statement.setString(++count, user.getFirstName());
+            statement.setString(++count, user.getLastName());
+            statement.setString(++count, user.getEmailAddress());
+            statement.setString(++count, user.getPhoneNumber());
+            statement.setString(++count, user.getDob());
+            statement.setString(++count, user.getRole().getRoleName());
+            statement.setString(++count, user.getDepartment().getDeptName());
+            statement.setDouble(++count, user.getSalary());
+            statement.execute();
+
+            return true;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 

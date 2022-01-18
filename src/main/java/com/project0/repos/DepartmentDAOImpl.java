@@ -72,7 +72,7 @@ public class DepartmentDAOImpl implements DepartmentDAO{
     @Override
     public boolean addDept(Department department) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "INSERT departments (dept_name, dept_descr) VALUES (?, ?));";
+            String sql = "INSERT INTO departments (dept_name, dept_descr) VALUES (?, ?));";
 
             PreparedStatement statement = conn.prepareStatement(sql);
 

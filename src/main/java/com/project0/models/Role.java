@@ -13,7 +13,6 @@ public class Role {
     public Role(String roleName, double min_salary, double max_salary) {
         this.roleName = roleName;
         this.minSalary = minSalary;
-
         this.maxSalary = maxSalary;
     }
 

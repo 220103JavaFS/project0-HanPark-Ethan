@@ -11,7 +11,7 @@ public class RoleDAOImpl implements RoleDAO{
     @Override
     public List<Role> findAll() {
         try(Connection conn = ConnectionUtil.getConnection()){
-            String sql = "SELECT * FROM departments;";
+            String sql = "SELECT * FROM roles;";
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(sql);
 
@@ -74,7 +74,7 @@ public class RoleDAOImpl implements RoleDAO{
     @Override
     public boolean addRole(Role role) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "INSERT roles (role_name, min_salary, max_salary) VALUES (?, ?, ?));";
+            String sql = "INSERT INTO roles (role_name, min_salary, max_salary) VALUES (?, ?, ?));";
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
@@ -82,7 +82,6 @@ public class RoleDAOImpl implements RoleDAO{
             statement.setString(++count, role.getRoleName());
             statement.setDouble(++count, role.getMinSalary());
             statement.setDouble(++count, role.getMaxSalary());
-
             statement.execute();
 
             return true;
