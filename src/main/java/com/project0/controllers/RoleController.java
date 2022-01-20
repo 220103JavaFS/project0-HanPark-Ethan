@@ -9,12 +9,12 @@ public class RoleController implements Controller{
     private RoleService roleService = new RoleService();
 
     Handler getAllRoles = (ctx) -> {
-      if (ctx.req.getSession(false) != null){
-          ctx.json(roleService.findAll());
-          ctx.status(200);
-      }else {
-          ctx.status(401);
-      }
+        if (ctx.req.getSession(false) != null){
+            ctx.json(roleService.findAll());
+            ctx.status(200);
+        }else {
+            ctx.status(401);
+        }
     };
 
     Handler getRole = (ctx) -> {

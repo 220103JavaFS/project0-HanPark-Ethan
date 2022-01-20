@@ -1,6 +1,5 @@
 package com.project0.controllers;
 
-import com.project0.models.Role;
 import com.project0.models.User;
 import com.project0.services.UserService;
 import io.javalin.Javalin;

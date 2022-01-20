@@ -57,7 +57,7 @@ public class DepartmentController implements Controller{
     @Override
     public void addRoutes(Javalin app) {
         app.get("/department", getAllDept);
-        app.get("/department/{dept_name}", getDept);
+        app.get("/department/{deptName}", getDept);
         app.put("/department", updateDept);
         app.post("/department", addDept);
     }

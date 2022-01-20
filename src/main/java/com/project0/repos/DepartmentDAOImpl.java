@@ -38,10 +38,9 @@ public class DepartmentDAOImpl implements DepartmentDAO{
             ResultSet result = statement.executeQuery();
 
             Department department = new Department();
-            while (result.next()){
+            if (result.next()){
                 department.setDeptName(result.getString("dept_name"));
                 department.setDeptDescr(result.getString("dept_descr"));
-
             }
             return department;
         }catch (SQLException e){
@@ -57,8 +56,9 @@ public class DepartmentDAOImpl implements DepartmentDAO{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             int count = 0;
-            statement.setString(++count, department.getDeptName());
-            statement.setString(++count, department.getDeptDescr());
+            statement.setString(count++, department.getDeptName());
+            statement.setString(count++, department.getDeptDescr());
+            statement.setString(count++, department.getDeptName());
             statement.execute();
 
             return true;
@@ -72,14 +72,13 @@ public class DepartmentDAOImpl implements DepartmentDAO{
     @Override
     public boolean addDept(Department department) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "INSERT INTO departments (dept_name, dept_descr) VALUES (?, ?));";
+            String sql = "INSERT INTO departments (dept_name, dept_descr) VALUES (?, ?);";
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
             int count = 0;
             statement.setString(++count, department.getDeptName());
             statement.setString(++count, department.getDeptDescr());
-
             statement.execute();
 
             return true;

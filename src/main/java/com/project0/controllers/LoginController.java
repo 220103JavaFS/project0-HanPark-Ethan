@@ -6,10 +6,9 @@ import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
 public class LoginController implements Controller{
-    LoginService loginService = new LoginService();
+    private LoginService loginService = new LoginService();
 
-
-    private Handler loginAttempt = (ctx) -> {
+    Handler login = (ctx) -> {
         UserDTO user = ctx.bodyAsClass(UserDTO.class);
 
         if (loginService.login(user.username, user.password)){
@@ -22,6 +21,6 @@ public class LoginController implements Controller{
     };
     @Override
     public void addRoutes(Javalin app) {
-        app.post("/login", this.loginAttempt);
+        app.post("/login", this.login);
     }
 }

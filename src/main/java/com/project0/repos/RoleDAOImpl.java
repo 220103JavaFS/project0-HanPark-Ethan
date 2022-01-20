@@ -40,7 +40,7 @@ public class RoleDAOImpl implements RoleDAO{
 
             Role role = new Role();
             while (result.next()){
-                role.setRoleName(result.getString("dept_name"));
+                role.setRoleName(result.getString("role_name"));
                 role.setMinSalary(result.getDouble("min_salary"));
                 role.setMaxSalary(result.getDouble("max_salary"));
             }

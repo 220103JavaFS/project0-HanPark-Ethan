@@ -1,6 +1,5 @@
 package com.project0.services;
 
-import com.project0.models.Role;
 import com.project0.models.User;
 import com.project0.repos.UserDAO;
 import com.project0.repos.UserDAOImpl;
