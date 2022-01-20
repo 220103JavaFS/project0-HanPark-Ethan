@@ -1,11 +1,15 @@
 package com.project0.controllers;
 
+import com.project0.Driver;
 import com.project0.models.User;
 import com.project0.services.UserService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserController implements Controller{
+    private static Logger log = LoggerFactory.getLogger(Driver.class);
     private UserService userService = new UserService();
 
     Handler getAllUsers = (ctx) -> {

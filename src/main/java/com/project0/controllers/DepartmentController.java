@@ -1,11 +1,15 @@
 package com.project0.controllers;
 
+import com.project0.Driver;
 import com.project0.models.Department;
 import com.project0.services.DepartmentService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DepartmentController implements Controller{
+    private static Logger log = LoggerFactory.getLogger(Driver.class);
     private DepartmentService departmentService = new DepartmentService();
 
     Handler getAllDept = (ctx) -> {
