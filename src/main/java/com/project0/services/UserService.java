@@ -16,6 +16,10 @@ public class UserService {
         return userDAO.findUser(id);
     }
 
+    public User findByUsername(String username){
+        return userDAO.findByUsername(username);
+    }
+
     public boolean updateUser(User user){
         return userDAO.updateUser(user);
     }

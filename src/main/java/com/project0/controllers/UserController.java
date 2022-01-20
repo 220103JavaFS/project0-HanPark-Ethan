@@ -29,6 +29,18 @@ public class UserController implements Controller{
         }
     };
 
+    Handler getUserByUsername = (ctx) -> {
+        if(ctx.req.getSession(false)!=null){
+            String username = ctx.pathParam("username");
+            int id = Integer.parseInt(username);
+            User user = userService.findByUsername(username);
+            ctx.json(user);
+            ctx.status(200);
+        }else {
+            ctx.status(401);
+        }
+    };
+
     Handler updateUser = (ctx) -> {
         if (ctx.req.getSession(false) != null) {
             User user = ctx.bodyAsClass(User.class);
@@ -59,6 +71,7 @@ public class UserController implements Controller{
     public void addRoutes(Javalin app) {
         app.get("/user", getAllUsers);
         app.get("/user/{id}", getUser);
+        app.get("/user/{username}", getUserByUsername);
         app.put("/user", updateUser);
         app.post("/user", addUser);
     }

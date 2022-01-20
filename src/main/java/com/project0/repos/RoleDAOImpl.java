@@ -39,7 +39,7 @@ public class RoleDAOImpl implements RoleDAO{
             ResultSet result = statement.executeQuery();
 
             Role role = new Role();
-            while (result.next()){
+            if (result.next()){
                 role.setRoleName(result.getString("role_name"));
                 role.setMinSalary(result.getDouble("min_salary"));
                 role.setMaxSalary(result.getDouble("max_salary"));
@@ -74,7 +74,7 @@ public class RoleDAOImpl implements RoleDAO{
     @Override
     public boolean addRole(Role role) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "INSERT INTO roles (role_name, min_salary, max_salary) VALUES (?, ?, ?));";
+            String sql = "INSERT INTO roles (role_name, min_salary, max_salary) VALUES (?, ?, ?);";
 
             PreparedStatement statement = conn.prepareStatement(sql);
 

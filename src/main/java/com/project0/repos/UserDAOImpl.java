@@ -90,8 +90,10 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
 
+            User user = new User();
             if (result.next()){
-                statement.setString(result.getString("username"));
+                user.setUsername(result.getString("username"));
+                user.setPassword(result.getString("password"));
             }
             return user;
         }catch (SQLException e){
